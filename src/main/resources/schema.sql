@@ -11,5 +11,5 @@ CREATE TABLE IF NOT EXISTS `user`  (
   `country` varchar(32) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '国家',
   `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) COMMENT '创建时间',
   `updated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) COMMENT '更新时间',
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户表';
