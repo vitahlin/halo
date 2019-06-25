@@ -27,3 +27,19 @@ CREATE TABLE IF NOT EXISTS `user_by_account`  (
   PRIMARY KEY (`id`),
   UNIQUE KEY (`email`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户正式表';
+
+
+-- App信息表
+CREATE TABLE IF NOT EXISTS `app`  (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '包名',
+  `name_cn` varchar(64) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '中文包名',
+  `app_key` varchar(16) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '包app key',
+  `bundle_id` varchar(32) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT 'IOS bundle_id',
+  `package_name` varchar(64) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT 'Android包名',
+  `google_public_key` varchar(512) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT 'Google应用公钥',
+  `notify_url` varchar(255) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '充值异步通知地址',
+  `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) COMMENT '创建时间',
+  `updated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3) COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'App信息表';
