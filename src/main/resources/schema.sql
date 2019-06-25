@@ -13,3 +13,17 @@ CREATE TABLE IF NOT EXISTS `user`  (
   `updated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3) COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户表';
+
+
+-- 注册用户表
+CREATE TABLE IF NOT EXISTS `user_by_account`  (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `app_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '应用ID',
+  `user_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID',
+  `email` varchar(64) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '注册用户邮箱',
+  `password` varchar(64) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '密码',
+  `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) COMMENT '创建时间',
+  `updated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3) COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY (`email`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户正式表';
