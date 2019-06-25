@@ -1,7 +1,7 @@
 package com.vitah.halo.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.vitah.halo.repository.UserByAccountRepository;
+import com.vitah.halo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @Autowired
-    private UserByAccountRepository userByAccountRepository;
+    private UserService userService;
 
     /**
      * 新用户注册
@@ -29,11 +29,13 @@ public class UserController {
     public ResponseEntity<Object> signUp(
         @RequestHeader(value = "X-APP-ID") Integer appId,
         @RequestHeader(value = "X-Platform") Integer platform,
-        @RequestHeader(value = "X-Device-ID") Integer devideId,
+        @RequestHeader(value = "X-Device-ID") String deviceId,
         @RequestParam(value = "email") String email,
         @RequestParam(value = "password") String password,
         @RequestParam(value = "code") String code
     ) {
+        userService.newUser(appId, platform, email, password);
+
         return new ResponseEntity<>(new JSONObject(), HttpStatus.OK);
     }
 }

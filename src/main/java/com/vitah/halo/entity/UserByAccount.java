@@ -36,4 +36,8 @@ public class UserByAccount extends AbstractAuditable {
 
     @Column(name = "password")
     private String password;
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 }

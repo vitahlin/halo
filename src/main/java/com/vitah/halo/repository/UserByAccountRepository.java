@@ -2,6 +2,7 @@ package com.vitah.halo.repository;
 
 import com.vitah.halo.entity.UserByAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,4 +10,12 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserByAccountRepository extends JpaRepository<UserByAccount, Integer> {
+
+    /**
+     * 根据邮箱查找用户
+     *
+     * @param email
+     * @return
+     */
+    Boolean existsByEmail(@Param("email") String email);
 }

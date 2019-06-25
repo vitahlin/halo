@@ -1,5 +1,6 @@
 package com.vitah.halo.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * @author vitah
@@ -17,9 +19,10 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @ToString
-@Entity(name = "User")
+@Builder
 @Table(name = "user")
-public class User extends AbstractAuditable {
+@Entity(name = "User")
+public class User extends AbstractAuditable implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,4 +51,20 @@ public class User extends AbstractAuditable {
 
     @Column(name = "country")
     private String country;
+
+    public void setAppId(Integer appId) {
+        this.appId = appId;
+    }
+
+    public void setPlatform(Integer platform) {
+        this.platform = platform;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getId() {
+        return this.id;
+    }
 }
