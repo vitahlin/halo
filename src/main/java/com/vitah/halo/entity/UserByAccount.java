@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * @author vitah
@@ -18,10 +20,13 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @ToString
-@Entity
-@Table
+@Entity(name = "UserByAccount")
+@Table(name = "user_by_account")
 @DynamicInsert
-public class UserByAccount extends AbstractAuditable {
+@DynamicUpdate
+public class UserByAccount extends AbstractAuditable implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
