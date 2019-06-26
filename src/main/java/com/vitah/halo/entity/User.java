@@ -1,6 +1,5 @@
 package com.vitah.halo.entity;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,7 +18,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
-@Builder
 @Table(name = "user")
 @Entity(name = "User")
 public class User extends AbstractAuditable implements Serializable {
@@ -51,20 +49,4 @@ public class User extends AbstractAuditable implements Serializable {
 
     @Column(name = "country")
     private String country;
-
-    public void setAppId(Integer appId) {
-        this.appId = appId;
-    }
-
-    public void setPlatform(Integer platform) {
-        this.platform = platform;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Integer getId() {
-        return this.id;
-    }
 }
