@@ -33,9 +33,10 @@ public class UserService {
 
         password = PasswordUtil.gen(password);
 
-        User user = User.builder().appId(appId).platform(platform).email(email).build();
-
-        System.out.println(user.toString());
+        User user = new User();
+        user.setAppId(appId);
+        user.setPlatform(platform);
+        user.setEmail(email);
         userRepository.saveAndFlush(user);
 
         UserByAccount userByAccount = new UserByAccount();

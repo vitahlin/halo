@@ -3,6 +3,7 @@ package com.vitah.halo.entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +21,7 @@ import java.io.Serializable;
 @ToString
 @Table(name = "user")
 @Entity(name = "User")
+@DynamicInsert
 public class User extends AbstractAuditable implements Serializable {
 
     @Id
