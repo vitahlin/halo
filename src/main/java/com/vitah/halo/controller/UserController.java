@@ -34,8 +34,10 @@ public class UserController {
         @RequestParam(value = "password") String password,
         @RequestParam(value = "code") String code
     ) {
-        userService.newUser(appId, platform, email, password);
+        String token = userService.newUser(appId, platform, email, password);
 
-        return new ResponseEntity<>(new JSONObject(), HttpStatus.OK);
+        JSONObject obj = new JSONObject();
+        obj.put("token", token);
+        return new ResponseEntity<>(obj, HttpStatus.OK);
     }
 }
