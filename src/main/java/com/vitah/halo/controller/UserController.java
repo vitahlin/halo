@@ -1,7 +1,6 @@
 package com.vitah.halo.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.vitah.halo.repository.UserByAccountRepository;
 import com.vitah.halo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,9 +19,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private UserByAccountRepository userByAccountRepository;
 
     /**
      * 新用户注册
