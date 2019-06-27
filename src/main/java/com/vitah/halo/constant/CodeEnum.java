@@ -18,7 +18,12 @@ public enum CodeEnum {
     /**
      * APP记录不存在
      */
-    APP_NOT_EXIST(10101);
+    APP_NOT_EXIST(10003),
+
+    /**
+     * 密码错误
+     */
+    PASSWORD_ERROR(10004);
 
     private int code;
 
