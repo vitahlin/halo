@@ -22,6 +22,15 @@ public class EmailController {
     @Autowired
     private UserByAccountRepository userByAccountRepository;
 
+    /**
+     * 用户注册
+     *
+     * @param appId
+     * @param platform
+     * @param deviceId
+     * @param email
+     * @return
+     */
     @RequestMapping(value = "/email/signup", method = RequestMethod.POST)
     public ResponseEntity<Object> signUp(
         @RequestHeader(value = "X-APP-ID") Integer appId,
@@ -29,16 +38,24 @@ public class EmailController {
         @RequestHeader(value = "X-Device-ID") String deviceId,
         @RequestParam(value = "email") String email
     ) {
-        // 判断邮箱是否已经存在
-        if (!userByAccountRepository.existsByEmail(email)) {
+        if (userByAccountRepository.existsByEmail(email)) {
             throw new BusinessException(CodeEnum.EMAIL_IS_EXIST, HttpStatus.BAD_REQUEST);
         }
 
-        // Redis写入验证码
+        // Todo: Redis写入验证码并且发送验证码邮件
 
         return new ResponseEntity<>(new JSONObject(), HttpStatus.OK);
     }
 
+    /**
+     * 重置密码
+     *
+     * @param appId
+     * @param platform
+     * @param deviceId
+     * @param email
+     * @return
+     */
     @RequestMapping(value = "/email/reset_password", method = RequestMethod.POST)
     public ResponseEntity<Object> resetPassword(
         @RequestHeader(value = "X-APP-ID") Integer appId,
@@ -46,12 +63,11 @@ public class EmailController {
         @RequestHeader(value = "X-Device-ID") String deviceId,
         @RequestParam(value = "email") String email
     ) {
-        // 判断邮箱是否已经存在
         if (!userByAccountRepository.existsByEmail(email)) {
             throw new BusinessException(CodeEnum.EMAIL_IS_EXIST, HttpStatus.BAD_REQUEST);
         }
 
-        // Redis写入验证码
+        // Todo: Redis写入验证码并且发送验证码邮件
 
         return new ResponseEntity<>(new JSONObject(), HttpStatus.OK);
     }
