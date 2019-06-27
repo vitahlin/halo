@@ -1,6 +1,7 @@
 package com.vitah.halo.service;
 
 import com.vitah.halo.constant.CodeEnum;
+import com.vitah.halo.entity.App;
 import com.vitah.halo.entity.User;
 import com.vitah.halo.entity.UserByAccount;
 import com.vitah.halo.exception.BusinessException;
@@ -36,6 +37,12 @@ public class UserService {
             throw new BusinessException(CodeEnum.EMAIL_IS_EXIST, HttpStatus.BAD_REQUEST);
         }
 
+        // 判断app key是否存在
+        App app = appRepository.findById(appId).get();
+        if (app == null) {
+            throw new BusinessException(CodeEnum.APP_NOT_EXIST, HttpStatus.BAD_REQUEST);
+        }
+
         password = PasswordUtil.gen(password);
 
         User user = new User();
@@ -51,6 +58,6 @@ public class UserService {
         userByAccount.setUserId(user.getId());
         userByAccountRepository.saveAndFlush(userByAccount);
 
-        return JWTUtil.genToken("QfBd0nGQrQMxpEGF", user.getId());
+        return JWTUtil.genToken(app.getAppKey(), user.getId());
     }
 }

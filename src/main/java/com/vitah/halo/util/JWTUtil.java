@@ -13,6 +13,13 @@ public class JWTUtil {
 
     private static final Integer EXPIRE_DAYS = 30;
 
+    /**
+     * 生成Token
+     *
+     * @param appKey
+     * @param userId
+     * @return
+     */
     public static String genToken(String appKey, Integer userId) {
         String token = "";
 

@@ -10,15 +10,6 @@ import java.util.GregorianCalendar;
 public class DateUtil {
 
     /**
-     * 获取当前时间戳
-     *
-     * @return
-     */
-    public static int getTimeStamp() {
-        return (int) (System.currentTimeMillis() / 1000);
-    }
-
-    /**
      * 获取多少天后的日期
      *
      * @param days
