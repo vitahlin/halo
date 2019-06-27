@@ -33,6 +33,7 @@ public class JWTUtil {
                 .withIssuedAt(nowDate)
                 .withExpiresAt(expireDate)
                 .withNotBefore(nowDate)
+                // Todo: 完善jti字段的生成规则
                 .withJWTId(Integer.valueOf(1).toString())
                 .sign(Algorithm.HMAC256(appKey));
         } catch (JWTCreationException exception) {
