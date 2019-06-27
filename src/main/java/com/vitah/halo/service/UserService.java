@@ -43,7 +43,7 @@ public class UserService {
             throw new BusinessException(CodeEnum.APP_NOT_EXIST, HttpStatus.BAD_REQUEST);
         }
 
-        password = PasswordUtil.gen(password);
+        password = PasswordUtil.secret(password);
 
         User user = new User();
         user.setAppId(appId);

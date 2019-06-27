@@ -5,7 +5,7 @@ package com.vitah.halo.util;
  */
 public class PasswordUtil {
 
-    public static String gen(String password) {
-        return password + "a";
+    public static String secret(String password) {
+        return password;
     }
 }

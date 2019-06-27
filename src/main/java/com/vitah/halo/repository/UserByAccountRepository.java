@@ -18,4 +18,12 @@ public interface UserByAccountRepository extends JpaRepository<UserByAccount, In
      * @return
      */
     Boolean existsByEmail(@Param("email") String email);
+
+    /**
+     * 根据邮箱获取用户信息
+     *
+     * @param email
+     * @return
+     */
+    UserByAccount findByEmail(@Param("email") String email);
 }
