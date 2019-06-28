@@ -23,9 +23,15 @@ public enum CodeEnum {
     /**
      * 密码错误
      */
-    PASSWORD_ERROR(10004);
+    PASSWORD_ERROR(10004),
+
+    /**
+     * 用户不存在
+     */
+    USER_NOT_EXIST(10005);
 
     private int code;
+
 
     CodeEnum(int errCode) {
         this.code = errCode;
