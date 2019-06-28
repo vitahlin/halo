@@ -34,4 +34,13 @@ public interface UserByAccountRepository extends JpaRepository<UserByAccount, In
      * @return
      */
     UserByAccount findByUserId(@Param("user_id") Integer userId);
+
+    /**
+     * 根据AppId和Email查找
+     *
+     * @param appId
+     * @param email
+     * @return
+     */
+    UserByAccount findByAppIdAndEmail(@Param("app_id") Integer appId, @Param("email") String email);
 }
