@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author vitah
  */
 @RestController
-public class UserController {
+public class SignUpController {
 
     @Autowired
     private UserService userService;

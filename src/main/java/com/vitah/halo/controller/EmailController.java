@@ -23,7 +23,7 @@ public class EmailController {
     private UserByAccountRepository userByAccountRepository;
 
     /**
-     * 用户注册
+     * 邮箱用户注册验证
      *
      * @param appId
      * @param platform
@@ -48,7 +48,7 @@ public class EmailController {
     }
 
     /**
-     * 重置密码
+     * 重置密码验证
      *
      * @param appId
      * @param platform
