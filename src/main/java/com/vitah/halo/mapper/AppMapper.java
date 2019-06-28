@@ -12,7 +12,14 @@ import java.util.List;
  */
 @Mapper(componentModel = "spring")
 public interface AppMapper {
+
     AppMapper INSTANCE = Mappers.getMapper(AppMapper.class);
 
+    /**
+     * App数据转DTO
+     *
+     * @param apps
+     * @return
+     */
     List<AppSummaryDTO> appsToDTOs(List<App> apps);
 }
