@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `user`  (
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户表';
 
 
--- 注册用户表
+-- 邮箱注册用户表
 CREATE TABLE IF NOT EXISTS `user_by_account`  (
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `app_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '应用ID',
@@ -26,8 +26,19 @@ CREATE TABLE IF NOT EXISTS `user_by_account`  (
   `updated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3) COMMENT '更新时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY (`email`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户正式表';
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '邮箱注册用户表';
 
+-- 匿名用户表
+CREATE TABLE IF NOT EXISTS `user_by_anonymous`  (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `app_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '应用ID',
+  `user_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID',
+  `device_id` varchar(64) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '设备ID',
+  `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) COMMENT '创建时间',
+  `updated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3) COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `device` (`app_id`,`device_id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '匿名用户表';
 
 -- App信息表
 CREATE TABLE IF NOT EXISTS `app`  (
