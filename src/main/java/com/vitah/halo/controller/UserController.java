@@ -21,7 +21,7 @@ public class UserController {
     private UserService userService;
 
     /**
-     * 新用户注册
+     * 用户邮箱注册
      *
      * @return
      */
