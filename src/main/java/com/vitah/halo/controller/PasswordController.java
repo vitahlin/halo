@@ -42,6 +42,8 @@ public class PasswordController {
         @RequestParam(value = "password") String password,
         @RequestParam(value = "code") String code
     ) {
+        // Todo：验证邮箱验证码
+
         UserByAccount userByAccount = userByAccountRepository.findByEmail(email);
         if (userByAccount == null) {
             throw new BusinessException(CodeEnum.EMAIL_NOT_EXIST, HttpStatus.BAD_REQUEST);
