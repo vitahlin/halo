@@ -1,5 +1,6 @@
 package com.vitah.halo.security;
 
+import com.vitah.halo.entity.User;
 import org.springframework.security.core.Authentication;
 
 /**
@@ -13,4 +14,11 @@ public interface IAuthenticationFacade {
      * @return
      */
     Authentication getAuthentication();
+
+    /**
+     * 获取当前用户信息
+     *
+     * @return
+     */
+    User currentUser();
 }
