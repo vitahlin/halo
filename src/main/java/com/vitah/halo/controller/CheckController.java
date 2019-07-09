@@ -1,6 +1,8 @@
 package com.vitah.halo.controller;
 
-import com.alibaba.fastjson.JSONObject;
+import com.vitah.halo.entity.User;
+import com.vitah.halo.security.AuthenticationFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -13,6 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class CheckController {
+
+    @Autowired
+    private AuthenticationFacade authenticationFacade;
+
     @RequestMapping(value = "/auth/check", method = RequestMethod.POST)
     public ResponseEntity<Object> resetPassword(
         @RequestHeader(value = "X-APP-ID") Integer appId,
@@ -20,6 +26,7 @@ public class CheckController {
         @RequestHeader(value = "X-Device-ID") String deviceId
     ) {
         // Todo: 加入JWT验证直接返回用户数据
-        return new ResponseEntity<>(new JSONObject(), HttpStatus.OK);
+        User user = authenticationFacade.currentUser();
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }
