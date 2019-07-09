@@ -32,7 +32,6 @@ public enum CodeEnum {
 
     private int code;
 
-
     CodeEnum(int errCode) {
         this.code = errCode;
     }
