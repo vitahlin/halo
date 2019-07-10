@@ -7,7 +7,6 @@ import com.vitah.halo.repository.UserByAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,17 +24,11 @@ public class EmailController {
     /**
      * 邮箱用户注册验证
      *
-     * @param appId
-     * @param platform
-     * @param deviceId
      * @param email
      * @return
      */
     @RequestMapping(value = "/email/signup", method = RequestMethod.POST)
     public ResponseEntity<Object> signUp(
-        @RequestHeader(value = "X-APP-ID") Integer appId,
-        @RequestHeader(value = "X-Platform") Integer platform,
-        @RequestHeader(value = "X-Device-ID") String deviceId,
         @RequestParam(value = "email") String email
     ) {
         if (userByAccountRepository.existsByEmail(email)) {
@@ -50,17 +43,11 @@ public class EmailController {
     /**
      * 重置密码验证
      *
-     * @param appId
-     * @param platform
-     * @param deviceId
      * @param email
      * @return
      */
     @RequestMapping(value = "/email/reset_password", method = RequestMethod.POST)
     public ResponseEntity<Object> resetPassword(
-        @RequestHeader(value = "X-APP-ID") Integer appId,
-        @RequestHeader(value = "X-Platform") Integer platform,
-        @RequestHeader(value = "X-Device-ID") String deviceId,
         @RequestParam(value = "email") String email
     ) {
         if (!userByAccountRepository.existsByEmail(email)) {
