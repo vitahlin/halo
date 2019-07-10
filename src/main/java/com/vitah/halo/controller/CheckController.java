@@ -19,6 +19,11 @@ public class CheckController {
     @Autowired
     private AuthenticationFacade authenticationFacade;
 
+    /**
+     * token验证接口
+     *
+     * @return
+     */
     @RequestMapping(value = "/auth/check", method = RequestMethod.POST)
     public ResponseEntity<Object> resetPassword() {
         User user = authenticationFacade.currentUser();
