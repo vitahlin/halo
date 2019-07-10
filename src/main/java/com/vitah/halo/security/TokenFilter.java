@@ -1,6 +1,8 @@
 package com.vitah.halo.security;
 
 import com.vitah.halo.constant.HeaderConstants;
+import com.vitah.halo.entity.App;
+import com.vitah.halo.repository.AppRepository;
 import com.vitah.halo.util.BeanUtil;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,8 +21,11 @@ public class TokenFilter extends OncePerRequestFilter {
 
     private TokenAuthentication tokenAuthentication;
 
+    private AppRepository appRepository;
+
     public TokenFilter() {
         tokenAuthentication = BeanUtil.getBean(TokenAuthentication.class);
+        appRepository = BeanUtil.getBean(AppRepository.class);
     }
 
     @Override
@@ -30,13 +35,20 @@ public class TokenFilter extends OncePerRequestFilter {
         FilterChain filterChain
     ) throws IOException, ServletException {
         String authToken = request.getHeader(HeaderConstants.HEADER_PREFIX);
-        if (authToken == null) {
+        String appId = request.getHeader(HeaderConstants.APP_ID);
+        if (authToken == null || appId == null) {
             filterChain.doFilter(request, response);
             return;
         }
 
+        App app = appRepository.findById(Integer.valueOf(appId)).orElse(null);
+        if (app == null) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+            return;
+        }
+
         try {
-            Authentication authentication = tokenAuthentication.getAuthentication(authToken);
+            Authentication authentication = tokenAuthentication.getAuthentication(authToken, app.getAppKey());
             if (authentication != null) {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }

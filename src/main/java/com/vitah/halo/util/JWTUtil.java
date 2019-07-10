@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.vitah.halo.constant.HeaderConstants;
 
 import java.util.Date;
 import java.util.Map;
@@ -55,7 +56,7 @@ public class JWTUtil {
      */
     public static Map<String, Claim> verifyToken(String secret, String token) {
         DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC256(secret)).
-            withIssuer("App Server").build().verify(token);
+            withIssuer("App Server").build().verify(token.replace(HeaderConstants.TOKEN_PREFIX, ""));
         return decodedJWT.getClaims();
     }
 }

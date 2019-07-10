@@ -18,24 +18,23 @@ import java.util.Map;
 @Component
 public class TokenAuthentication {
 
+    private static String UID_CLAIM_KEY = "sub";
+
     @Autowired
     private UserRepository userRepository;
 
-
-    public Authentication getAuthentication(String token) {
-        if (token == null) {
+    public Authentication getAuthentication(String token, String secret) {
+        if (token == null || secret == null) {
             return null;
         }
 
-        Map<String, Claim> claimMap = JWTUtil.verifyToken("vitah", token);
-
-        if (!claimMap.containsKey("uid")) {
+        Map<String, Claim> claimMap = JWTUtil.verifyToken(secret, token);
+        if (!claimMap.containsKey(UID_CLAIM_KEY)) {
             return null;
         }
 
-        Integer uid = claimMap.get("uid").asInt();
+        Integer uid = Integer.valueOf(claimMap.get(UID_CLAIM_KEY).asString());
         User user = userRepository.findById(uid).orElse(null);
-
         if (user == null) {
             return null;
         }

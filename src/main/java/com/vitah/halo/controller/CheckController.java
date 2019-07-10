@@ -25,7 +25,6 @@ public class CheckController {
         @RequestHeader(value = "X-Platform") Integer platform,
         @RequestHeader(value = "X-Device-ID") String deviceId
     ) {
-        // Todo: 加入JWT验证直接返回用户数据
         User user = authenticationFacade.currentUser();
         return new ResponseEntity<>(user, HttpStatus.OK);
     }

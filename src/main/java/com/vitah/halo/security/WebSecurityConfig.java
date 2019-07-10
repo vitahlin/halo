@@ -4,6 +4,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 /**
  * @author vitah
@@ -19,13 +20,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             // 使用token，不需要session
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
+            // 所有的请求都不需要验证token
             .authorizeRequests().anyRequest().permitAll();
-        /*
-            // 所有请求都需要鉴权认证
+
+        // 配置需要验证token的路由
+        httpSecurity.antMatcher("/auth/check")
+            .authorizeRequests().anyRequest().authenticated()
             .and()
             .addFilterBefore(new TokenFilter(), BasicAuthenticationFilter.class);
-
-         */
 
         // 禁用缓存
         httpSecurity.headers().cacheControl();

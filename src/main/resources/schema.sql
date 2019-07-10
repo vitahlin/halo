@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS `user_by_anonymous`  (
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '匿名用户表';
 
 -- App信息表
+DROP TABLE IF EXISTS `app`;
 CREATE TABLE IF NOT EXISTS `app`  (
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '包名',
