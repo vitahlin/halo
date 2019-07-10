@@ -56,7 +56,8 @@ public class JWTUtil {
      */
     public static Map<String, Claim> verifyToken(String secret, String token) {
         DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC256(secret)).
-            withIssuer("App Server").build().verify(token.replace(HeaderConstants.TOKEN_PREFIX, ""));
+            withIssuer("App Server").build()
+            .verify(token.replace(HeaderConstants.TOKEN_PREFIX, ""));
         return decodedJWT.getClaims();
     }
 }

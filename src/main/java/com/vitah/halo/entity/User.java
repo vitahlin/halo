@@ -38,8 +38,8 @@ public class User extends AbstractAuditable implements Serializable {
     @Column(name = "platform")
     private Integer platform;
 
-    @Column(name = "is_anonymous")
-    private Integer isAnonymous;
+    @Column(name = "anonymous")
+    private Integer anonymous;
 
     @Column(name = "gender")
     private Integer gender;

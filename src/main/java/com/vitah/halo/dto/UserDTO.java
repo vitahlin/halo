@@ -18,7 +18,7 @@ public class UserDTO {
 
     private Integer platform;
 
-    private Integer isAnonymous;
+    private Integer anonymous;
 
     private Integer gender;
 

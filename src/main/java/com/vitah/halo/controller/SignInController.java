@@ -67,7 +67,7 @@ public class SignInController {
             user = new User();
             user.setAppId(appId);
             user.setPlatform(platform);
-            user.setIsAnonymous(1);
+            user.setAnonymous(1);
             userRepository.saveAndFlush(user);
 
             userByAnonymous = new UserByAnonymous();
