@@ -1,6 +1,7 @@
 package com.vitah.halo.controller;
 
 import com.vitah.halo.entity.User;
+import com.vitah.halo.mapper.UserMapper;
 import com.vitah.halo.security.AuthenticationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,6 @@ public class CheckController {
         @RequestHeader(value = "X-Device-ID") String deviceId
     ) {
         User user = authenticationFacade.currentUser();
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<>(UserMapper.INSTANCE.userToDTO(user), HttpStatus.OK);
     }
 }
