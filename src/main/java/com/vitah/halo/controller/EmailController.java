@@ -1,8 +1,10 @@
 package com.vitah.halo.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.vitah.halo.cache.EmailCache;
 import com.vitah.halo.constant.CodeEnum;
 import com.vitah.halo.exception.BusinessException;
+import com.vitah.halo.repository.AppRepository;
 import com.vitah.halo.repository.UserByAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,27 +24,33 @@ public class EmailController {
     @Autowired
     private UserByAccountRepository userByAccountRepository;
 
+    @Autowired
+    private AppRepository appRepository;
+
+    @Autowired
+    private EmailCache emailCache;
+
     /**
-     * 邮箱用户注册验证
+     * 邮箱用户注册的时候，向邮箱发送验证码
      *
      * @param appId
-     * @param platform
-     * @param deviceId
      * @param email
      * @return
      */
     @RequestMapping(value = "/email/signup", method = RequestMethod.POST)
     public ResponseEntity<Object> signUp(
         @RequestHeader(value = "X-APP-ID") Integer appId,
-        @RequestHeader(value = "X-Platform") Integer platform,
-        @RequestHeader(value = "X-Device-ID") String deviceId,
         @RequestParam(value = "email") String email
     ) {
-        if (userByAccountRepository.existsByEmail(email)) {
+        if (!appRepository.existsById(appId)) {
+            throw new BusinessException(CodeEnum.APP_NOT_EXIST, HttpStatus.BAD_REQUEST);
+        }
+
+        if (userByAccountRepository.existsByAppIdAndEmail(appId, email)) {
             throw new BusinessException(CodeEnum.EMAIL_IS_EXIST, HttpStatus.BAD_REQUEST);
         }
 
-        // Todo: Redis写入验证码并且发送验证码邮件
+        emailCache.setCode(EmailCache.SIGN_UP, appId, email);
 
         return new ResponseEntity<>(new JSONObject(), HttpStatus.OK);
     }
