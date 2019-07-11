@@ -1,5 +1,6 @@
 package com.vitah.halo.cache;
 
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -25,7 +26,7 @@ public class EmailCache {
     public void setCode(String codeType, Integer appId, String email) {
         String cacheKey = String.format(CACHE_KEY, codeType, appId.toString(), email);
 
-        String code = "vitah code";
+        String code = RandomString.make(8);
         redisTemplate.opsForValue().set(cacheKey, code);
         redisTemplate.expire(cacheKey, EXPIRE_SECOND, TimeUnit.SECONDS);
     }
