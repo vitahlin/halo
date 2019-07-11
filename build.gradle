@@ -20,6 +20,8 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-security'
     
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    
     // Mysql
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'mysql:mysql-connector-java'
