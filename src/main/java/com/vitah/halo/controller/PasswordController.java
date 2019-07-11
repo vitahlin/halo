@@ -1,6 +1,7 @@
 package com.vitah.halo.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.vitah.halo.cache.EmailCache;
 import com.vitah.halo.constant.CodeEnum;
 import com.vitah.halo.entity.UserByAccount;
 import com.vitah.halo.exception.BusinessException;
@@ -13,21 +14,24 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author vitah
  */
+@RestController
 public class PasswordController {
 
     @Autowired
     private UserByAccountRepository userByAccountRepository;
 
+    @Autowired
+    private EmailCache emailCache;
+
     /**
      * 重置密码
      *
      * @param appId
-     * @param platform
-     * @param deviceId
      * @param email
      * @param password
      * @param code
@@ -36,15 +40,15 @@ public class PasswordController {
     @RequestMapping(value = "/user/password/reset", method = RequestMethod.PUT)
     public ResponseEntity<Object> reset(
         @RequestHeader(value = "X-APP-ID") Integer appId,
-        @RequestHeader(value = "X-Platform") Integer platform,
-        @RequestHeader(value = "X-Device-ID") String deviceId,
         @RequestParam(value = "email") String email,
         @RequestParam(value = "password") String password,
         @RequestParam(value = "code") String code
     ) {
-        // Todo：验证邮箱验证码
+        if (!emailCache.getCode(EmailCache.RESET_PASSWORD, appId, email).equals(code)) {
+            throw new BusinessException(CodeEnum.VERIFY_CODE_ERROR, HttpStatus.BAD_REQUEST);
+        }
 
-        UserByAccount userByAccount = userByAccountRepository.findByEmail(email);
+        UserByAccount userByAccount = userByAccountRepository.findByAppIdAndEmail(appId, email);
         if (userByAccount == null) {
             throw new BusinessException(CodeEnum.EMAIL_NOT_EXIST, HttpStatus.BAD_REQUEST);
         }

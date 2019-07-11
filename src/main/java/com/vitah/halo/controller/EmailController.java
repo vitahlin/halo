@@ -59,24 +59,19 @@ public class EmailController {
      * 重置密码验证
      *
      * @param appId
-     * @param platform
-     * @param deviceId
      * @param email
      * @return
      */
     @RequestMapping(value = "/email/reset_password", method = RequestMethod.POST)
     public ResponseEntity<Object> resetPassword(
         @RequestHeader(value = "X-APP-ID") Integer appId,
-        @RequestHeader(value = "X-Platform") Integer platform,
-        @RequestHeader(value = "X-Device-ID") String deviceId,
         @RequestParam(value = "email") String email
     ) {
-        if (!userByAccountRepository.existsByEmail(email)) {
+        if (!userByAccountRepository.existsByAppIdAndEmail(appId, email)) {
             throw new BusinessException(CodeEnum.EMAIL_IS_EXIST, HttpStatus.BAD_REQUEST);
         }
 
-        // Todo: Redis写入验证码并且发送验证码邮件
-
+        emailCache.setCode(EmailCache.RESET_PASSWORD, appId, email);
         return new ResponseEntity<>(new JSONObject(), HttpStatus.OK);
     }
 }
