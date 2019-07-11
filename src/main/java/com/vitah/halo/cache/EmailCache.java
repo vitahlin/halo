@@ -33,6 +33,12 @@ public class EmailCache {
 
     public String getCode(String codeType, Integer appId, String email) {
         String cacheKey = String.format(CACHE_KEY, codeType, appId.toString(), email);
-        return redisTemplate.opsForValue().get(cacheKey).toString();
+
+        Object obj = redisTemplate.opsForValue().get(cacheKey);
+        if (obj == null) {
+            return "";
+        }
+
+        return obj.toString();
     }
 }
