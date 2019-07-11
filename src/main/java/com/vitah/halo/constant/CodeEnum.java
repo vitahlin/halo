@@ -28,7 +28,12 @@ public enum CodeEnum {
     /**
      * 用户不存在
      */
-    USER_NOT_EXIST(10005);
+    USER_NOT_EXIST(10005),
+
+    /**
+     * 验证码错误
+     */
+    VERIFY_CODE_ERROR(10006);
 
     private int code;
 
