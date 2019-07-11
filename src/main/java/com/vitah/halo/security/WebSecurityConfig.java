@@ -24,7 +24,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests().anyRequest().permitAll();
 
         // 配置需要验证token的路由
-        httpSecurity.antMatcher("/auth/check")
+        httpSecurity
+            .antMatcher("/auth/check")
+            .antMatcher("/user/password/modify")
             .authorizeRequests().anyRequest().authenticated()
             .and()
             .addFilterBefore(new TokenFilter(), BasicAuthenticationFilter.class);
