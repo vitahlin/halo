@@ -22,9 +22,6 @@ spring:
     database: 0
     password:
 
-
-
-
 logging:
   level:
     org:
