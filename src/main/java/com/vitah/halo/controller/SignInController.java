@@ -102,8 +102,7 @@ public class SignInController {
         @RequestHeader(value = "X-Platform") Integer platform,
         @RequestHeader(value = "X-Device-ID") String deviceId,
         @RequestParam(value = "email") String email,
-        @RequestParam(value = "password") String password,
-        @RequestParam(value = "ttl", required = false, defaultValue = "120") Integer ttl
+        @RequestParam(value = "password") String password
     ) {
         App app = appRepository.findById(appId).orElse(null);
         if (app == null) {

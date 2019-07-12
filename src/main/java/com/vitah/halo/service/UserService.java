@@ -31,6 +31,15 @@ public class UserService {
     @Autowired
     private AppRepository appRepository;
 
+    /**
+     * 生成新的注册用户
+     *
+     * @param appId    应用ID
+     * @param platform 平台（IOS、Android）
+     * @param email    用户邮箱
+     * @param password 密码
+     * @return
+     */
     @Transactional(rollbackOn = Exception.class)
     public String newUser(Integer appId, Integer platform, String email, String password) {
         if (userByAccountRepository.existsByEmail(email)) {
