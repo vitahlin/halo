@@ -13,10 +13,18 @@ Spring Boot 实现的一个用户中心，采用`JWT`进行身份验证，包含
 
 需要安装`docker`:
 
+首次需要编译所需镜像：
 ```
 cd docker
+make build
+make up 
+```
+
+后续直接启动即可：
+```
 make start
 ```
+
 启动需要的`Mysql`和`Redis`容器。
 
 
