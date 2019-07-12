@@ -42,7 +42,7 @@ public class UserService {
      */
     @Transactional(rollbackOn = Exception.class)
     public String newUser(Integer appId, Integer platform, String email, String password) {
-        if (userByAccountRepository.existsByEmail(email)) {
+        if (userByAccountRepository.existsByAppIdAndEmail(appId, email)) {
             throw new BusinessException(CodeEnum.EMAIL_IS_EXIST, HttpStatus.BAD_REQUEST);
         }
 

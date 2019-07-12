@@ -12,14 +12,6 @@ import org.springframework.stereotype.Repository;
 public interface UserByAccountRepository extends JpaRepository<UserByAccount, Integer> {
 
     /**
-     * 根据邮箱查找用户
-     *
-     * @param email
-     * @return
-     */
-    Boolean existsByEmail(@Param("email") String email);
-
-    /**
      * 根据邮箱和AppId查找用户是否注册过
      *
      * @param appId
@@ -27,14 +19,6 @@ public interface UserByAccountRepository extends JpaRepository<UserByAccount, In
      * @return
      */
     Boolean existsByAppIdAndEmail(@Param("app_id") Integer appId, @Param("email") String email);
-
-    /**
-     * 根据邮箱获取用户信息
-     *
-     * @param email
-     * @return
-     */
-    UserByAccount findByEmail(@Param("email") String email);
 
     /**
      * 根据userId查找用户信息
