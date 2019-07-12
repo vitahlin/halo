@@ -23,6 +23,13 @@ public class EmailCache {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
+    /**
+     * 设置验证码
+     *
+     * @param codeType 验证码类型
+     * @param appId    AppId
+     * @param email    用户邮箱
+     */
     public void setCode(String codeType, Integer appId, String email) {
         String cacheKey = String.format(CACHE_KEY, codeType, appId.toString(), email);
 
@@ -31,6 +38,14 @@ public class EmailCache {
         redisTemplate.expire(cacheKey, EXPIRE_SECOND, TimeUnit.SECONDS);
     }
 
+    /**
+     * 获取验证码
+     *
+     * @param codeType 验证码类型
+     * @param appId    AppId
+     * @param email    用户邮箱
+     * @return
+     */
     public String getCode(String codeType, Integer appId, String email) {
         String cacheKey = String.format(CACHE_KEY, codeType, appId.toString(), email);
 
