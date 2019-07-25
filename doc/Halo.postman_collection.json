@@ -1,0 +1,446 @@
+{
+	"info": {
+		"_postman_id": "e6bf0599-deab-41b5-aeed-ed2df5f8a511",
+		"name": "Halo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "注册",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-APP-ID",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "X-Platform",
+						"value": "2",
+						"type": "text"
+					},
+					{
+						"key": "X-Device-ID",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "code",
+							"value": "a",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "aa",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "a",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{Host}}/user/signup",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取全部App",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-APP-ID",
+						"type": "text",
+						"value": "1"
+					},
+					{
+						"key": "X-Platform",
+						"type": "text",
+						"value": "2"
+					},
+					{
+						"key": "X-Device-ID",
+						"type": "text",
+						"value": "1"
+					}
+				],
+				"url": {
+					"raw": "{{Host}}/apps",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"apps"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "匿名登录",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-APP-ID",
+						"type": "text",
+						"value": "1"
+					},
+					{
+						"key": "X-Platform",
+						"type": "text",
+						"value": "1"
+					},
+					{
+						"key": "X-Device-ID",
+						"type": "text",
+						"value": "device_id"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{Host}}/user/signin/anonymous",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"user",
+						"signin",
+						"anonymous"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token验证",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwibmJmIjoxNTYyNzMxMDUzLCJpc3MiOiJBcHAgU2VydmVyIiwiZXhwIjoxNTY1MzIzMDUzLCJpYXQiOjE1NjI3MzEwNTMsImp0aSI6IjEifQ.djIMUe6-k-ZBMasnEVZpMZMqHUSOPMClg_RdwgYd9io",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-APP-ID",
+						"type": "text",
+						"value": "1"
+					},
+					{
+						"key": "X-Platform",
+						"type": "text",
+						"value": "1"
+					},
+					{
+						"key": "X-Device-ID",
+						"type": "text",
+						"value": "device_id"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{Host}}/auth/check",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"auth",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "邮箱用户注册验证",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-APP-ID",
+						"type": "text",
+						"value": "1"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "code",
+							"value": "a",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "aa",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "a",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{Host}}/email/signup",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"email",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "邮箱用户注册",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-APP-ID",
+						"type": "text",
+						"value": "1"
+					},
+					{
+						"key": "X-Platform",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "code",
+							"value": "aa",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "aa",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{Host}}/user/signup",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "重置密码验证",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-APP-ID",
+						"type": "text",
+						"value": "1"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "aaaaa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{Host}}/email/reset_password",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"email",
+						"reset_password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "重置密码",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-APP-ID",
+						"type": "text",
+						"value": "1"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "aa",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "pass",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "11",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{Host}}/user/password/reset",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"user",
+						"password",
+						"reset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "密码修改",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-APP-ID",
+						"type": "text",
+						"value": "1"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "aaaaa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{Host}}/email/reset_password",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"email",
+						"reset_password"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "aa",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2a619153-5957-409d-b25a-a1c43d464891",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c40ae361-a4f6-42ef-96f9-8c78cf5ac2ca",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
