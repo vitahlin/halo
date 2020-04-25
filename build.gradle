@@ -19,14 +19,17 @@ dependencies {
     implementation "com.alibaba:fastjson:1.2.58"
 
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    
+
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    
+
     // Mysql
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'mysql:mysql-connector-java'
 
-    implementation 'org.projectlombok:lombok:1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
 
     // JWT
     implementation 'com.auth0:java-jwt:3.8.1'
