@@ -20,5 +20,6 @@ public interface UserByAnonymousRepository extends JpaRepository<UserByAnonymous
      */
     UserByAnonymous findByAppIdAndDeviceId(
         @Param("app_id") Integer appId,
-        @Param("device_id") String deviceId);
+        @Param("device_id") String deviceId
+    );
 }

@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 /**
  * @author vitah
@@ -47,11 +48,12 @@ public class UserService {
         }
 
         // 判断app key是否存在
-        App app = appRepository.findById(appId).get();
-        if (app == null) {
+        Optional<App> optionalApp = appRepository.findById(appId);
+        if (!optionalApp.isPresent()) {
             throw new BusinessException(CodeEnum.APP_NOT_EXIST, HttpStatus.BAD_REQUEST);
         }
 
+        App app = optionalApp.get();
         password = PasswordUtil.secret(password);
 
         User user = new User();
